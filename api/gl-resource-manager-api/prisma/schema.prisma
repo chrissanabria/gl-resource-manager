@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model user {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  name String
+  lastname String
+  phone String
+  company String
+  user_roles user_role[]
+  favourite_resources favorite_user_resource[]
+}
+
+model role {
+  id Int @id @default(autoincrement())
+  name String @unique
+  user_roles user_role[]
+}
+
+model user_role {
+  id Int @id @default(autoincrement())
+  user user @relation(fields: [user_id], references: [id])
+  user_id Int
+  role role @relation(fields: [role_id], references: [id])
+  role_id Int
+}
+
+model resource {
+  id Int @id @default(autoincrement())
+  name String
+  lastname String
+  birthdate DateTime
+  hiredate DateTime
+  is_available Boolean
+  practice practice @relation(fields: [practice_id], references: [id])
+  practice_id Int
+  seniority seniority @relation(fields: [seniority_id], references: [id])
+  seniority_id Int
+  favourite_resources favorite_user_resource[]
+  resource_stacks resource_stack[]
+}
+
+model practice {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  resources resource[]
+}
+
+model seniority {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  resources resource[]
+}
+
+model favorite_user_resource {
+  id Int @id @default(autoincrement())
+  user user @relation(fields: [user_id], references: [id])
+  user_id Int
+  resource resource @relation(fields: [resource_id], references: [id])
+  resource_id Int
+}
+
+model resource_stack {
+  id Int @id @default(autoincrement())
+  resource resource @relation(fields: [resource_id], references: [id])
+  resource_id Int
+  stack stack @relation(fields: [stack_id], references: [id])
+  stack_id Int
+  is_primary Boolean
+  stack_level stack_level @relation(fields: [stack_level_id], references: [id])
+  stack_level_id Int
+}
+
+model stack {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  resources resource_stack[]
+}
+
+model stack_level {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  resources resource_stack[]
+}

@@ -1,0 +1,71 @@
+.Register {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.LogoContainer {
+    background-color: #f4f4f4;
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.Logo {
+    height: 150px;
+    filter: invert(1);
+}
+
+.RegisterFormContainer {
+    height: 100%;
+    width: 700px;
+    padding: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 360px;
+    gap: 20px;
+}
+
+.FormTitle {
+    font-size: 2.4em;
+}
+
+.FormLabel {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.FormInput {
+    border: 1px black solid;
+    width: 100%;
+    height: 45px;
+    padding: 0px 10px;
+}
+
+.FormSubmit {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: black;
+    width: 100%;
+    height: 45px;
+}
+
+.Link {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+}
